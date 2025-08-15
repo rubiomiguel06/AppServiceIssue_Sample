@@ -117,10 +117,20 @@
   </ItemGroup>
   <Import Project="$(WapProjPath)\Microsoft.DesktopBridge.targets" />
   <ItemGroup>
-    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.4188" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.26100.4188" />
     <PackageReference Include="Microsoft.WindowsAppSDK" Version="1.6.250228001" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\AppServiceIssue\AppServiceIssue.csproj" />
   </ItemGroup>
+
+	<!-- Added these two groups for the AppService RuntimeComponent to find the WinRT.Host.runtimeconfig.json -->
+	<PropertyGroup>
+		<RuntimeComponentTargetFramework>net8.0-windows10.0.19041.0</RuntimeComponentTargetFramework>
+	</PropertyGroup>
+	<ItemGroup>
+		<Content Include="..\WindowsAppService\bin\$(Platform)\$(Configuration)\$(RuntimeComponentTargetFramework)\WinRT.Host.runtimeconfig.json">
+			<PackagePath>WinRT.Host.runtimeconfig.json</PackagePath>
+		</Content>
+	</ItemGroup>
 </Project>
